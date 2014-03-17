@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      .btn-group
+        %a.btn.btn-primary{ href: "#{locations_path}#loc#{@location.name}" }
+          %span.glyphicon.glyphicon-chevron-left
+        %a.btn.btn-default{ href: "#" }
+          %b= "Editing #{@location.name}"
+        %a.btn.btn-danger{ href: location_path( @location ), rel: 'nofollow', :'data-method' => 'delete', :'data-confirm' => 'Are you sure?' }
+          %span.glyphicon.glyphicon-trash
+
+= render 'form'

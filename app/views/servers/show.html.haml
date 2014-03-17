@@ -1,0 +1,58 @@
+%h1 Servers
+
+%p#notice= notice
+
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      .btn-group
+        %a.btn.btn-primary{ href: servers_path }
+          %span.glyphicon.glyphicon-chevron-left
+        %a.btn.btn-default{ href: "#" }
+          %b= @server.name
+        %a.btn.btn-primary{ href: edit_server_path( @server ) }
+          %span.glyphicon.glyphicon-edit
+  .panel-body
+    %ul.list-group
+      %li.list-group-item
+        %div
+          %p
+            %b Category:
+            = @server.category.name
+          %p
+            %b Domain:
+            = @server.domain
+          %p
+            %b IP:
+          %ul.bulletless
+            - @server.ip_addresses.each do |ip|
+              %li
+                .cat_box{ style: "background-color:#{ subnet_color ip }" }
+                = ip
+
+      %li.list-group-item
+        %div
+          %p
+            %b Model:
+            = @server.model
+          %p
+            %b Ram:
+            = @server.ram
+          %p
+            %b Hd:
+            = @server.hd
+      - unless @server.vms.empty?
+        %li.list-group-item
+          %p
+            %b VMs:
+          %ul
+            - @server.vms.each do |vm|
+              %li= link_to vm.name, vm
+      %li.list-group-item
+        %div
+          %p
+            %b Rack:
+            = link_to @server.rack_mount.name, @server.rack_mount
+          %p
+            %b Location:
+            = link_to @server.rack_mount.location.name, locations_path + "#loc#{@server.rack_mount.location.name}"

@@ -1,0 +1,38 @@
+.modelform
+  = form_for @server do |f|
+    - if @server.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@server.errors.count, "error")} prohibited this server from being saved:"
+        %ul
+          - @server.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :domain
+      = f.text_field :domain
+    .field
+      = f.label :model
+      = f.text_field :model
+    .field
+      = f.label :ip
+      = f.text_field :ip
+    .field
+      = f.label :ram
+      = f.number_field :ram
+    .field
+      = f.label :hd
+      = f.number_field :hd
+    .field
+      = f.label :rack
+      = f.select :rack_mount_id, options_from_collection_for_select( @racks, 'id', 'name', @server.rack_mount.nil? ? '' : @server.rack_mount.id )
+    .field
+      = f.label :category
+      = f.select :category_id, options_from_collection_for_select( @categories, 'id', 'name', @server.category.nil? ? '' : @server.category.id )
+    .field
+      = f.label :position
+      = f.text_field :position
+    .actions
+      = f.submit 'Save'

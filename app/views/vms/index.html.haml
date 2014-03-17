@@ -1,0 +1,25 @@
+%h1
+  VMs
+  %a.super.btn.btn-primary.btn-xs{ href: new_vm_path }
+    %span.glyphicon.glyphicon-plus
+
+%p#notice= notice
+
+.table-responsive
+  %table.table.table-striped
+    %tr
+      %th Name
+      %th Server
+      %th IP
+
+    - @vms.each do |vm|
+      %tr
+        %td
+          %a{ href: vm_path( vm ) }= vm.name
+        %td= vm.server.name
+        %td
+          %ul.bulletless
+            - vm.ip_addresses.each do |ip|
+              %li
+                .cat_box{ style: "background-color:#{ subnet_color ip }" }
+                = ip

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  domain: MyString
+  model: MyString
+  ram: 1
+  hd: 1
+
+two:
+  name: MyString
+  domain: MyString
+  model: MyString
+  ram: 1
+  hd: 1

@@ -1,0 +1,18 @@
+%h1
+  Racks
+  %a.super.btn.btn-primary.btn-xs{ href: new_rack_mount_path }
+    %span.glyphicon.glyphicon-plus
+
+%p#notice= notice
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %th Name
+      %th Location
+    %tbody
+      - @rack_mounts.each do |rack_mount|
+        %tr
+          %td
+            %a{ href: rack_mount_path( rack_mount ) }= rack_mount.name
+          %td= rack_mount.location.name

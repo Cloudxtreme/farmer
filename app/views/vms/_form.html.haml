@@ -1,0 +1,32 @@
+.modelform
+  = form_for @vm do |f|
+    - if @vm.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@vm.errors.count, "error")} prohibited this vm from being saved:"
+        %ul
+          - @vm.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :domain
+      = f.text_field :domain
+    .field
+      = f.label :ip
+      = f.text_field :ip
+    .field
+      = f.label :ram
+      = f.number_field :ram
+    .field
+      = f.label :hd
+      = f.number_field :hd
+    .field
+      = f.label :server_id
+      = f.select :server_id, options_from_collection_for_select( @servers, 'id', 'name', @vm.server.nil? ? '' : @vm.server.id )
+    .field
+      = f.label :position
+      = f.text_field :position
+    .actions
+      = f.submit 'Save'

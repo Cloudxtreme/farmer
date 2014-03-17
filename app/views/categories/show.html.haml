@@ -1,0 +1,18 @@
+%h1 Categories
+
+%p#notice= notice
+
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      .btn-group
+        %a.btn.btn-primary{ href: categories_path }
+          %span.glyphicon.glyphicon-chevron-left
+        %a.btn.btn-default{ href: "#" }
+          %b= @category.name
+        %a.btn.btn-primary{ href: edit_category_path( @category ) }
+          %span.glyphicon.glyphicon-edit
+  .panel-body
+    %p
+      %b Color:
+      = @category.color

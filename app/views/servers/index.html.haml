@@ -1,0 +1,31 @@
+%h1
+  Servers
+  %a.super.btn.btn-primary.btn-xs{ href: new_server_path }
+    %span.glyphicon.glyphicon-plus
+
+%p#notice= notice
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %th Name
+      %th Category
+      %th IP
+      %th Model
+      %th RAM
+      %th HD
+    %tbody
+      - @servers.each do |server|
+        %tr
+          %td
+            %a{ href: server_path( server ) }= server.name
+          %td= server.category.name
+          %td
+            %ul.bulletless
+              - server.ip_addresses.each do |ip|
+                %li
+                  .cat_box{ style: "background-color:#{ subnet_color ip }" }
+                  = ip
+          %td= server.model
+          %td= server.ram
+          %td= server.hd

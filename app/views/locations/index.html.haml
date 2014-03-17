@@ -1,0 +1,62 @@
+%h1 
+  Locations
+  %a.super.btn.btn-primary.btn-xs{ href: new_location_path }
+    %span.glyphicon.glyphicon-plus
+
+%p#notice= notice
+
+#locations.panel-group
+  - @locations.each do |location|
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          .btn-group
+            %a.btn.btn-primary{ href: edit_location_path( location ) }
+              %span.glyphicon.glyphicon-edit
+            %a.btn.btn-default{ href: "#loc#{location.name}", :'data-toggle' => 'collapse', :'data-target' => "#loc#{location.name}" }
+              %b
+                = location.name
+            %a.btn.btn-info{ onclick: "$('#loc#{location.name} .panel-collapse').collapse('toggle')" }
+              %span.glyphicon.glyphicon-align-left
+      %div.panel-collapse.collapse{ id: "loc#{location.name}" }
+        .panel-body
+          - location.rack_mounts.sort.each do |rm|
+            .rackmount
+              .rackmount-header
+                %a{ href: rack_mount_path( rm ) }
+                  = rm.name
+              .rackmount-body
+                - rm.servers.sort.each do |s|
+                  .server{ style: "background-color: #{s.category.color};" }
+                    - case s.category.name
+                    - when 'disabled'
+                      %span{ style: 'color: #999;' }= s.name
+                    - else
+                      = s.name
+                    %a.btn-xs.right{ href: server_path( s ), style: s.category.name.eql?( 'disabled' ) ? 'color: #999;' : '' }
+                      %span.glyphicon.glyphicon-screenshot
+                    %a.btn-xs.right{ href: "#{locations_path}#loc#{location.name},#{s.name}", :'data-toggle' => 'collapse', :'data-target' => "##{s.name}", style: s.category.name.eql?( 'disabled' ) ? 'color: #999;' : '' }
+                      %span.glyphicon.glyphicon-align-left
+                    .panel-collapse.collapse{ id: "#{s.name}"}
+                      - unless s.ip.nil? or s.ip.length.zero?
+                        .server_info
+                          %div
+                            %b model 
+                            = s.model
+
+                      - unless s.vms.size.zero?
+                        .vms{ style: 'column-count: 2; -webkit-column-count:2; -moz-column-count: 2;' }
+                          - s.vms.sort { |a,b| a.name <=> b.name }.each do |vm|
+                            .vm
+                              = link_to vm.name, vm
+
+:javascript
+  var rs = document.location.hash.split( ',' );
+  if ( rs[0].length == 0 )
+    rs[0] = "#{@locations.size.zero? ? '#' : '#loc' + @locations.first.name}";
+
+  $( rs[0] ).addClass( 'in' );
+
+  if ( rs[1].length > 0 )
+    $( '#' + rs[1] ).addClass( 'in' );
+

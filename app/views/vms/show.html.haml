@@ -1,0 +1,47 @@
+%h1 VMs
+
+%p#notice= notice
+
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      .btn-group
+        %a.btn.btn-primary{ href: vms_path }
+          %span.glyphicon.glyphicon-chevron-left
+        %a.btn.btn-default{ href: "#" }
+          %b= @vm.name
+        %a.btn.btn-primary{ href: edit_vm_path( @vm ) }
+          %span.glyphicon.glyphicon-edit
+  .panel-body
+    %ul.list-group
+      %li.list-group-item
+        %div
+          %p
+            %b Domain:
+            = @vm.domain
+          %p
+            %b IP:
+          %ul.bulletless
+            - @vm.ip_addresses.each do |ip|
+              %li
+                .cat_box{ style: "background-color:#{ subnet_color ip }" }
+                = ip
+      %li.list-group-item
+        %div
+          %p
+            %b Ram:
+            = @vm.ram
+          %p
+            %b Hd:
+            = @vm.hd
+      %li.list-group-item
+        %div
+          %p
+            %b Server:
+            = link_to @vm.server.name, @vm.server
+          %p
+            %b Rack:
+            = link_to @vm.server.rack_mount.name, @vm.server.rack_mount
+          %p
+            %b Location:
+            = link_to @vm.server.rack_mount.location.name, locations_path + "#loc#{@vm.server.rack_mount.location.name}"

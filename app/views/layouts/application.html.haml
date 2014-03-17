@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Farmer
+    = stylesheet_link_tag    'bootstrap', media: 'all'
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "collapse", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  %body
+    %header
+      %nav.navbar.navbar-default.navbar-fixed-top{ role: 'navigation' }
+        %div{ class: 'navbar-header' }
+          %a{ class: 'navbar-brand', href: '#' } Farmer
+
+        %ul{ class: 'nav navbar-nav' }
+          %li{ class: params[:controller] == 'locations' ? 'active' : '' }
+            = link_to 'Locations', locations_path
+          %li{ class: params[:controller] == 'rack_mounts' ? 'active' : '' }
+            = link_to 'Racks', rack_mounts_path
+          %li{ class: params[:controller] == 'servers' ? 'active' : '' }
+            = link_to 'Servers', servers_path
+          %li{ class: params[:controller] == 'vms' ? 'active' : '' }
+            = link_to 'VMs', vms_path
+          %li{ class: params[:controller] == 'categories' ? 'active' : '' }
+            = link_to 'Categories', categories_path
+
+        %form.navbar-form.navbar-left{ role: 'search', action: '/search/index', method: 'get' }
+          .form-group
+            %input.form-control{ name: 'q', type: 'text', placeholder: 'Search' }
+          %button.btn.btn-default{ type: 'submit' } Submit
+
+    #container
+      = yield

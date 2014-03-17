@@ -1,0 +1,16 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.bulletless {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.cat_box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #000;
+  margin-right: 8px;
+}

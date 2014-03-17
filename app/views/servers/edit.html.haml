@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      .btn-group
+        %a.btn.btn-primary{ href: server_path( @server ) }
+          %span.glyphicon.glyphicon-chevron-left
+        %a.btn.btn-default{ href: "#" }
+          %b= "Editing #{@server.name}"
+        %a.btn.btn-danger{ href: server_path( @server ), rel: 'nofollow', :'data-method' => 'delete', :'data-confirm' => 'Are you sure?' }
+          %span.glyphicon.glyphicon-trash
+
+= render 'form'

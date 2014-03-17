@@ -1,0 +1,11 @@
+%h1 
+  = "Results for '#{@q}'"
+
+%ul{ style: 'list-style: none' }
+  - @results.each do |res|
+    %li{ style: 'margin-bottom: 10px;' }
+      %h3
+        = link_to res.name, res
+      %div{ style: 'padding-left: 5px;' }
+        in
+        = res.class

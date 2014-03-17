@@ -1,0 +1,28 @@
+%h1 Racks
+
+%p#notice= notice
+
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      .btn-group
+        %a.btn.btn-primary{ href: rack_mounts_path }
+          %span.glyphicon.glyphicon-chevron-left
+        %a.btn.btn-default{ href: "#" }
+          %b= @rack_mount.name
+        %a.btn.btn-primary{ href: edit_rack_mount_path( @rack_mount ) }
+          %span.glyphicon.glyphicon-edit
+  .panel-body
+    %ul.list-group
+      %li.list-group-item
+        %div
+          %p
+            %b Location:
+            = link_to @rack_mount.location.name, locations_path + "#loc#{@rack_mount.location.name}"
+      - unless @rack_mount.servers.empty?
+        %li.list-group-item
+          %p
+            %b Servers:
+          %ul
+            - @rack_mount.servers.each do |s|
+              %li= link_to s.name, s

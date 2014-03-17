@@ -1,0 +1,77 @@
+// Place all the styles related to the RackMounts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.rackmount {
+  float: left;
+  padding: 5px;
+  text-align: center;
+  width: 235px;
+}
+
+.rackmount_b {
+  float: left;
+  padding: 36px;
+  text-align: center;
+  width: 400px;
+}
+
+.rackmount-header {
+  font-weight: bold;
+  margin-bottom: 9px;
+}
+
+.rackmount-header_b {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.rackmount-body {
+  border-left: 3px solid #900;
+  border-right: 3px solid #900;
+  padding: 3px;
+}
+
+.rackmount-body_b {
+  border-left: 6px solid #900;
+  border-right: 6px solid #900;
+  padding: 6px;
+}
+
+.server {
+  border: 1px solid #000;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+
+.server_b {
+  border: 1px solid #000;
+  border-radius: 3px;
+  margin-bottom: 3px;
+  padding: 0.5em;
+}
+
+.server_info,
+.vms {
+  font-family: monospace;
+  font-size: 9px;
+  margin: auto;
+  margin-bottom: 3px;
+  padding-left: 3px;
+  text-align: left;
+  width: 90%;
+}
+
+.server_info {
+  border-top: 1px solid #012;
+}
+
+.vms {
+  border-top: 1px dashed #456;
+  color: #456;
+}
+
+.vm:hover { 
+  background-color: rgba(0,0,0,.1);
+}
